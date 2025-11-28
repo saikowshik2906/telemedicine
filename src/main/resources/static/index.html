@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemedicine System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏥 Global Telemedicine System</h1>
+            <p>Your Health, Our Priority</p>
+        </header>
+
+        <div id="mainMenu" class="menu-section">
+            <h2>Welcome</h2>
+            <div class="button-group">
+                <button onclick="showRegister()" class="btn btn-primary">Register as Patient</button>
+                <button onclick="showPatientLogin()" class="btn btn-secondary">Patient Login</button>
+                <button onclick="showDoctorLogin()" class="btn btn-secondary">Doctor Login</button>
+                <button onclick="showAdminLogin()" class="btn btn-admin">Admin Panel</button>
+            </div>
+        </div>
+
+        <!-- Patient Registration Form -->
+        <div id="registerForm" class="form-section hidden">
+            <h2>Patient Registration</h2>
+            <form id="patientRegForm">
+                <input type="text" id="regName" placeholder="Full Name" required>
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="password" id="regPassword" placeholder="Password (min 4 chars)" required>
+                <input type="tel" id="regPhone" placeholder="Phone Number" required>
+                <input type="number" id="regAge" placeholder="Age" min="1" max="150" required>
+                <select id="regGender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="button" onclick="showMain()" class="btn btn-secondary">Back</button>
+            </form>
+            <div id="regMessage" class="message"></div>
+        </div>
+
+        <!-- Patient Login Form -->
+        <div id="patientLoginForm" class="form-section hidden">
+            <h2>Patient Login</h2>
+            <form id="patLoginForm">
+                <input type="email" id="patEmail" placeholder="Email" required>
+                <input type="password" id="patPassword" placeholder="Password" required>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="button" onclick="showMain()" class="btn btn-secondary">Back</button>
+            </form>
+            <div id="patLoginMessage" class="message"></div>
+        </div>
+
+        <!-- Doctor Login Form -->
+        <div id="doctorLoginForm" class="form-section hidden">
+            <h2>Doctor Login</h2>
+            <form id="docLoginForm">
+                <input type="email" id="docEmail" placeholder="Email" required>
+                <input type="password" id="docPassword" placeholder="Password" required>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="button" onclick="showMain()" class="btn btn-secondary">Back</button>
+            </form>
+            <div id="docLoginMessage" class="message"></div>
+        </div>
+
+        <!-- Admin Login Form -->
+        <div id="adminLoginForm" class="form-section hidden">
+            <h2>Admin Login</h2>
+            <form id="adminLoginFormEl">
+                <input type="password" id="adminPassword" placeholder="Admin Password" required>
+                <button type="submit" class="btn btn-admin">Access Admin Panel</button>
+                <button type="button" onclick="showMain()" class="btn btn-secondary">Back</button>
+            </form>
+            <div id="adminLoginMessage" class="message"></div>
+        </div>
+
+        <!-- Patient Dashboard -->
+        <div id="patientDashboard" class="dashboard hidden">
+            <h2>Welcome, <span id="patientName"></span>!</h2>
+            <div class="button-group">
+                <button onclick="viewDoctors()" class="btn btn-primary">View Doctors</button>
+                <button onclick="showBookAppointment()" class="btn btn-primary">Book Appointment</button>
+                <button onclick="viewMyAppointments()" class="btn btn-secondary">My Appointments</button>
+                <button onclick="showUploadReport()" class="btn btn-secondary">Upload Report</button>
+                <button onclick="viewMyReports()" class="btn btn-secondary">View Reports</button>
+                <button onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+            <div id="patientContent" class="content"></div>
+        </div>
+
+        <!-- Doctor Dashboard -->
+        <div id="doctorDashboard" class="dashboard hidden">
+            <h2>Welcome, Dr. <span id="doctorName"></span>!</h2>
+            <div class="button-group">
+                <button onclick="viewAllAppointments()" class="btn btn-primary">View All Appointments</button>
+                <button onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+            <div id="doctorContent" class="content"></div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="adminDashboard" class="dashboard hidden">
+            <h2>Admin Panel</h2>
+            <div class="button-group">
+                <button onclick="adminViewDoctors()" class="btn btn-primary">View All Doctors</button>
+                <button onclick="showAddDoctor()" class="btn btn-primary">Add Doctor</button>
+                <button onclick="adminViewAppointments()" class="btn btn-secondary">View All Appointments</button>
+                <button onclick="logout()" class="btn btn-danger">Logout</button>
+            </div>
+            <div id="adminContent" class="content"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
