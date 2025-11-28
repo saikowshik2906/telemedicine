@@ -90,6 +90,11 @@ docker run -p 8080:8080 -e DB_URL=jdbc:mysql://host.docker.internal:3306/telemed
 - BCrypt password hashing
 - HikariCP connection pooling
 
+**Important (local change):** Password hashing temporarily disabled
+
+- For convenience during local testing, password hashing has been removed and passwords are stored as plain text in the database in this branch/workspace. This is insecure and intended only for short-term local development or testing.
+- Before deploying to any public environment, revert to storing hashed passwords (BCrypt) and migrate existing plain-text passwords to hashed values.
+
 ## 🛠️ Troubleshooting
 
 **Port in use?** Change in `application.properties`: `server.port=8081`  

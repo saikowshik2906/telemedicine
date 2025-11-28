@@ -4,7 +4,6 @@ import com.telemed.dao.DoctorDAO;
 import com.telemed.model.Doctor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +17,6 @@ public class DoctorController {
     @Autowired
     private DoctorDAO doctorDAO;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public ResponseEntity<List<Doctor>> getAllDoctors() {
@@ -49,8 +46,8 @@ public class DoctorController {
     @PostMapping
     public ResponseEntity<?> addDoctor(@RequestBody Doctor doctor) {
         try {
-            // Hash password before storing
-            doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
+            // Store password as provided (no hashing)
+            // (leave doctor.getPassword() unchanged)
             boolean success = doctorDAO.addDoctor(doctor);
             if (success) {
                 return ResponseEntity.status(HttpStatus.CREATED)

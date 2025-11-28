@@ -6,7 +6,6 @@ import com.telemed.model.Patient;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,17 +21,16 @@ public class PatientController {
     @Autowired
     private PatientDAO patientDAO;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    // PasswordEncoder removed: store passwords as-is
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody PatientRequest request) {
         try {
-            // Hash the password before storing
+            // Store the password as provided (no hashing)
             Patient patient = new Patient(
                 request.getName(),
                 request.getEmail(),
-                passwordEncoder.encode(request.getPassword()),
+                request.getPassword(),
                 request.getPhone(),
                 request.getAge(),
                 request.getGender()
