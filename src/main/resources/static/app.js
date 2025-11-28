@@ -1,5 +1,5 @@
 // API Base URL (change for production)
-const API_URL = 'http://localhost:8080/api';
+const API_URL = '/api';
 
 // Current user state
 let currentUser = null;
